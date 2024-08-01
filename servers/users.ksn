@@ -1,0 +1,33 @@
+// Users file
+// KSN its a kae script new that looks like c#
+// NCS its a component, that says this is not C#
+// Written by SmuziCodeC верьте мне я умею писать на англ
+
+kae-script-new namespace 'users' {
+  assign user-template {
+    account {
+        'account_Name': "value";
+        'account_PassWord': "value";
+        'account_IsActivated': "int";
+    }
+}
+
+
+public 'users-table' : NCS # * сюда добавлять юзеров * # {
+  TelegramSessionsTest, [password: 'passwords', 5931],
+
+}
+
+public 'users-assigner' : NCS {
+   public void Assigner assign;
+   for each (i *) in 'users-table' {
+       TableToAssign(assign);
+   }
+
+   void TableToAssign()
+   {
+       for each (i *) in 'users-table' {
+         assign = parameters:GetGeneric('i *' in 'users-table'); 
+       }
+   }
+}
